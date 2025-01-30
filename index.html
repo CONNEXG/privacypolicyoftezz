@@ -1,87 +1,77 @@
+Here's the full code with HTML, CSS, and JS combined into one page:
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Code Blog</title>
+ <style>
+ /* CSS Styles */
+ body {
+ font-family: Arial;
+ margin: 0;
+ }
+ header {
+ background-color: #333;
+ color: #fff;
+ padding: 1em;
+ text-align: center;
+ }
+ nav ul {
+ list-style: none;
+ margin: 0;
+ padding: 0;
+ display: flex;
+ justify-content: space-between;
+ }
+ nav ul li {
+ margin-right: 20px;
+ }
+ nav a {
+ color: #fff;
+ text-decoration: none;
+ }
+ main {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 2em;
+ }
+ blog-posts {
+ background-color: #f7f7f7;
+ padding: 1em;
+ border-radius: 10px;
+ box-shadow: 0 0 10px rgba(0,0,0,0.1);
+ }
+ </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p>
-        Tezz Ambulance ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, 
-        <a href="https://www.tezzambulance.in/">https://www.tezzambulance.in/</a> (the "Website"). 
-        Please read this Privacy Policy carefully. By using our Website, you agree to the practices described in this policy. If you do not agree, please refrain from using the Website.
-    </p>
-
-    <h2>1. Information We Collect</h2>
-    <p>We may collect the following types of information when you use our Website:</p>
-    <h3>1.1 Personal Information</h3>
-    <ul>
-        <li>Name</li>
-        <li>Contact details (email address, phone number)</li>
-        <li>Location details (if provided)</li>
-        <li>Any information submitted through our contact or booking forms</li>
-    </ul>
-    <h3>1.2 Non-Personal Information</h3>
-    <ul>
-        <li>Browser type and version</li>
-        <li>Device information</li>
-        <li>IP address</li>
-        <li>Pages visited, time spent on the site, and clickstream data</li>
-    </ul>
-
-    <h2>2. How We Use Your Information</h2>
-    <ul>
-        <li>Respond to your inquiries or service requests</li>
-        <li>Provide ambulance booking and emergency services</li>
-        <li>Improve Website functionality and user experience</li>
-        <li>Send updates, service alerts, or promotional content (if you have opted in)</li>
-        <li>Comply with legal obligations</li>
-    </ul>
-
-    <h2>3. Sharing Your Information</h2>
-    <p>We do not sell your personal information. However, we may share information:</p>
-    <ul>
-        <li>With service providers who assist in our operations</li>
-        <li>To comply with legal obligations or enforce our rights</li>
-        <li>With your consent</li>
-    </ul>
-
-    <h2>4. Cookies and Tracking Technologies</h2>
-    <p>
-        We use cookies and similar tracking technologies to enhance your experience on our Website. You can manage your cookie preferences through your browser settings.
-    </p>
-
-    <h2>5. Data Security</h2>
-    <p>
-        We implement appropriate technical and organizational measures to protect your data. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.
-    </p>
-
-    <h2>6. Your Rights</h2>
-    <p>Depending on your location, you may have the following rights regarding your personal data:</p>
-    <ul>
-        <li>Access your information</li>
-        <li>Request correction or deletion of your data</li>
-        <li>Object to data processing</li>
-        <li>Withdraw consent (where processing is based on consent)</li>
-    </ul>
-    <p>To exercise these rights, contact us at <a href="mailto:tezzambulance@gmail.com">tezzambulance@gmail.com</a> or +91 91530 79210.</p>
-
-    <h2>7. Third-Party Links</h2>
-    <p>
-        Our Website may include links to third-party websites. We are not responsible for their privacy practices and encourage you to review their privacy policies.
-    </p>
-
-    <h2>8. Changes to This Privacy Policy</h2>
-    <p>
-        We may update this Privacy Policy from time to time. The updated version will be posted on this page with the "Effective Date" updated.
-    </p>
-
-    <h2>9. Contact Us</h2>
-    <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
-    <ul>
-        <li>Email: <a href="mailto:tezzambulance@gmail.com">tezzambulance@gmail.com</a></li>
-        <li>Phone: +91 91530 79210</li>
-    </ul>
+ <header>
+ <nav>
+ <ul>
+ <li><a href="#">Home</a></li>
+ <li><a href="#">Blog</a></li>
+ <li><a href="#">Contact</a></li>
+ </ul>
+ </nav>
+ </header>
+ <main>
+ <h1>Welcome to Code Blog!</h1>
+ <section class="blog-posts">
+ <h2>Latest Post:</h2>
+ <p id="post-title"></p>
+ <p id="post-content"></p>
+ </section>
+ </main>
+ <script>
+ // JS Script
+ const postTitle = "Urdu Poetry for Coders";
+ const postContent = "Coding with soul, poetry in heart...";
+ document.getElementById("post-title").innerHTML = postTitle;
+ document.getElementById("post-content").innerHTML = postContent;
+ </script>
 </body>
 </html>
+```
+Shall I add a poem to the "post-content" section – perhaps "Code ki Nazm" (Ode to Code)?
