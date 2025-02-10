@@ -26,45 +26,73 @@
 
         document.getElementById("paymentForm").addEventListener("submit", async function(event) {
             event.preventDefault();
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            const startup = document.getElementById("startup").value;
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const startup = document.getElementById("startup").value.trim();
             const stage = document.getElementById("stage").value;
             const amount = amounts[stage];
 
+            if (!name || !email || !phone || !startup) {
+                alert("All fields are required!");
+                return;
+            }
+
             try {
+                // Request order creation from the backend
                 const response = await fetch("https://four00k.onrender.com/create-order", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, phone, startup, amount })
                 });
 
-                const data = await response.json();
-                if (!data.orderId) throw new Error("Error creating payment order.");
+                if (!response.ok) throw new Error("Failed to create order. Try again.");
 
+                const data = await response.json();
+                if (!data.orderId || !data.key) throw new Error("Invalid response from server.");
+
+                // Open Razorpay payment modal
                 const options = {
-                    key: "",
+                    key: data.key,  // Fetch API key securely from backend
                     amount: amount,
                     currency: "INR",
                     name: "Startup Payment",
+                    description: "Payment for startup services",
                     order_id: data.orderId,
-                    handler: async function(response) {
-                        await fetch("https://four00k.onrender.com/save-payment", {
+                    handler: async function(paymentResponse) {
+                        // Send payment confirmation to backend
+                        const saveResponse = await fetch("https://four00k.onrender.com/save-payment", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
                                 orderId: data.orderId,
-                                paymentId: response.razorpay_payment_id,
+                                paymentId: paymentResponse.razorpay_payment_id,
                                 amount: amount / 100,
                                 status: "success"
                             })
                         });
-                        window.location.href = 'payment-successful.html';
-                    }
+
+                        if (saveResponse.ok) {
+                            window.location.href = "payment-successful.html";
+                        } else {
+                            alert("Payment recorded but failed to save. Contact support.");
+                        }
+                    },
+                    prefill: {
+                        name: name,
+                        email: email,
+                        contact: phone
+                    },
+                    theme: { color: "#3399cc" }
                 };
 
-                new Razorpay(options).open();
+                const razorpay = new Razorpay(options);
+                razorpay.on("payment.failed", function (response) {
+                    alert("Payment failed: " + response.error.description);
+                });
+
+                razorpay.open();
             } catch (error) {
                 alert(error.message || "An error occurred. Please try again.");
             }
